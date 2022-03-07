@@ -3,6 +3,7 @@ import path from 'node:path'
 import fs from 'node:fs/promises'
 import pkgJson from '../package.json'
 import { detect } from 'detect-package-manager'
+import { oraPromise } from 'ora'
 import pack from 'libnpmpack'
 import { execa } from 'execa'
 
@@ -25,19 +26,21 @@ sade('npi <package>', true)
             await fs.mkdir((dir = path.resolve(cwd, dir)), { recursive: true })
 
             const packages = _.concat(pkg)
-            const files = await Promise.all(
-                packages.map(async pkg => {
-                    const tarball = await pack(pkg)
-                    const file = path.resolve(dir, path.basename(tarball.resolved))
-                    await fs.writeFile(file, tarball)
-                    return './' + path.relative(cwd, file).replaceAll('\\', '/')
-                })
+            const filePaths = await Promise.all(
+                packages.map(pkg =>
+                    oraPromise(async () => {
+                        const tarball = await pack(pkg)
+                        const filePath = path.resolve(dir, path.basename(tarball.resolved))
+                        await fs.writeFile(filePath, tarball)
+                        return './' + path.relative(cwd, filePath).replaceAll('\\', '/')
+                    }, `Downloading: ${pkg}`)
+                )
             )
 
             const mode = dev ? 'dev' : peer ? 'peer' : optional ? 'optional' : null
             await execa(
                 installer,
-                ['add', ...files, mode && `${installer === 'yarn' ? '--' : '--save-'}${mode}`].filter(
+                ['add', ...filePaths, mode && `${installer === 'yarn' ? '--' : '--save-'}${mode}`].filter(
                     Boolean
                 ) as string[],
                 { cwd, stdout: process.stdout, stderr: process.stderr }

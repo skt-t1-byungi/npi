@@ -8,7 +8,6 @@
         "install",
         "tarball"
     ],
-    "bin": "",
     "scripts": {},
     "repository": "https://github.com/skt-t1-byungi/npi.git",
     "author": "byungi <tiniwz@gmail.com>",
@@ -31,6 +30,7 @@
         "detect-package-manager": "^2.0.1",
         "execa": "^6.1.0",
         "libnpmpack": "^4.0.0",
+        "ora": "^6.1.0",
         "sade": "^1.8.1"
     }
 }
