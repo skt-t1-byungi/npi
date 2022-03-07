@@ -1,8 +1,8 @@
 # @byungi/npi
 
-> npm pack and install a remote package.
+> npm pack and install a remote package
 
-Sometimes there are remote packages that cannot be installed from the CI. And it is useful to install them as tarball files. `npi` reduces the repetition of pack and install commands.
+Sometimes there are remote packages that cannot be installed from CI/CD. In this case, it is useful to install them as tarball files. `npi` reduces the repetition of pack and install commands.
 
 ## Usage
 
