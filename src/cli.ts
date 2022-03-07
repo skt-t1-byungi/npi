@@ -1,14 +1,18 @@
+#!/bin/env node
 import sade from 'sade'
 import path from 'node:path'
 import fs from 'node:fs/promises'
-import pkgJson from '../package.json'
+import { version } from '../package.json'
 import { detect } from 'detect-package-manager'
 import { oraPromise } from 'ora'
 import pack from 'libnpmpack'
 import { execa } from 'execa'
 
 sade('npi <package>', true)
-    .version(pkgJson.version)
+    .version(version)
+    .describe('npm pack and install a remote package.')
+    .example('npi react@^17 react-dom@^17')
+    .example('npi jest webpack --dev --installer yarn')
     .option('-i, --installer', 'Package manager for install.')
     .option('-d, --dir', 'Directory to download. Default is "vendors".', 'vendors')
     .option('-D, --dev', 'Install to devDependencies.')
