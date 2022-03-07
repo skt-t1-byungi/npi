@@ -2,7 +2,7 @@
 
 > npm pack and install a remote package
 
-Sometimes there are remote packages that cannot be installed from CI/CD. In this case, it is useful to install them as tarball files. `npi` reduces the repetition of pack and install commands.
+Sometimes, some packages can't be installed on CI/CD. Installing these packages as a tarball file can be an alternative. `npi` reduces the repetition of pack and install commands.
 
 ## Usage
 
