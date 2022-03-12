@@ -3,6 +3,7 @@
 import sade from 'sade'
 import path from 'node:path'
 import fs from 'node:fs/promises'
+import process from 'node:process'
 import { version } from '../package.json'
 import { detect } from 'detect-package-manager'
 import { oraPromise } from 'ora'
