@@ -27,7 +27,7 @@ npi react@^17 react-dom@^17
 
   Options
     -i, --installer    Package manager for install. (npm, yarn, pnpm)
-    -d, --dir          Directory to download. (default vendors)
+    -d, --dir          Directory to download.  (default vendors)
     -D, --dev          Install to devDependencies.
     -P, --peer         Install to peerDependencies.
     -O, --optional     Install to optionalDependencies.
@@ -35,8 +35,8 @@ npi react@^17 react-dom@^17
     -h, --help         Displays this message
 
   Examples
-    $ npi npi react@^17 react-dom@^17
-    $ npi npi jest webpack --dev --installer yarn
+    $ npi react@^17 react-dom@^17
+    $ npi jest webpack --dev --installer yarn
 ```
 
 ## License
